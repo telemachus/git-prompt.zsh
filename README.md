@@ -17,8 +17,7 @@ The structure of the prompt is the following:
 ```
 
 * `branch_name`: Name of the current branch or warning message if HEAD is detached.
-* `upstream`: Name of the remote branch or warning message if no remote branch
-  is set.
+* `upstream`: Name of the remote branch or warning message if no remote branch is set.
     Since a remote either exists or does not, you will only see at most one message in this section.
     By default, the prompt will not show the name of the remote branch, but it will show if no remote is set.
     However, you can configure the two options separately as well.
