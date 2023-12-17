@@ -47,7 +47,7 @@ The structure of the prompt is the following:
 
 ### Manual installation
 
-Clone this repo or download the [git-prompt.zsh](https://raw.githubusercontent.com/telemachus/git-prompt.zsh/master/git-prompt.zsh) file.
+Clone this repo or download the [git-prompt.zsh](https://raw.githubusercontent.com/telemachus/git-prompt.zsh/main/git-prompt.zsh) file.
 Then source it in your `.zshrc`. For example:
 
 ```bash
