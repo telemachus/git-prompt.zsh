@@ -143,7 +143,7 @@ You can preview your configuration by setting the `ZSH_GIT_PROMPT_THEME_*` varia
 Remember to save them in your `.zshrc` after you tweak them to your liking.
 The example below shows the defaults. You can change any of these.
 
-```zsh
+```bash
 # Basics:
 ## These prefixes will surround the entire prompt.
 ## Set them to the empty string if you don't want them.
@@ -162,7 +162,8 @@ ZSH_GIT_PROMPT_THEME_UPSTREAM_MISSING="(no upstream set)"
 
 # Section three:
 ## State of the repo and tracking status symbols.
-## These are as in [`git-prompt.sh`](https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh)
+## These are as in `git-prompt.sh`.
+## https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
 ZSH_GIT_PROMPT_THEME_STAGED="+"
 ZSH_GIT_PROMPT_THEME_UNSTAGED="*"
 ZSH_GIT_PROMPT_THEME_UNTRACKED="%%" # Doubled to escape %
