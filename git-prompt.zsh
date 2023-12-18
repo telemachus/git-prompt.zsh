@@ -161,7 +161,7 @@ function _zsh_git_prompt_git_status() {
                 print THEME_SEPARATOR;
 
                 # Section two: upstream
-                if (SHOW_UPSTREAM != "" && length(upstream) > 0) {
+                if (SHOW_UPSTREAM_NAME != "" && length(upstream) > 0) {
                     gsub("%", "%%", upstream);
                     print upstream;
                     print THEME_SEPARATOR;
