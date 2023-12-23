@@ -60,7 +60,7 @@ setopt PROMPT_SUBST
 function _zsh_git_prompt_git_status() {
     emulate -L zsh
     {
-        GIT_OPTIONAL_LOCKS=0 command git status --branch --porcelain=v2 \
+        command git --no-optional-locks status --branch --porcelain=v2 \
             --show-stash 2>&1 || echo "fatal: git command failed"
     } | $ZSH_GIT_PROMPT_AWK_CMD \
         -v SHOW_UPSTREAM_NAME="$ZSH_GIT_PROMPT_SHOW_UPSTREAM_NAME" \
