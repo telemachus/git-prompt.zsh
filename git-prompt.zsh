@@ -23,7 +23,6 @@
 # Configuration
 : ${ZSH_GIT_PROMPT_SHOW_UPSTREAM_NAME=""}
 : ${ZSH_GIT_PROMPT_SHOW_UPSTREAM_MISSING="1"}
-: ${ZSH_GIT_PROMPT_SHOW_STASH=""}
 : ${ZSH_GIT_PROMPT_NO_ASYNC=""}
 : ${ZSH_GIT_PROMPT_AWK_CMD=""}
 
@@ -61,12 +60,8 @@ setopt PROMPT_SUBST
 function _zsh_git_prompt_git_status() {
     emulate -L zsh
     {
-        [[ -n "$ZSH_GIT_PROMPT_SHOW_STASH" ]] && (
-            c=$(command git rev-list --walk-reflogs --count refs/stash 2> /dev/null)
-            [[ -n "$c" ]] && echo "# stash.count $c"
-        )
-        GIT_OPTIONAL_LOCKS=0 command git status --branch --porcelain=v2 2>&1 \
-            || echo "fatal: git command failed"
+        GIT_OPTIONAL_LOCKS=0 command git status --branch --porcelain=v2 \
+            --show-stash 2>&1 || echo "fatal: git command failed"
     } | $ZSH_GIT_PROMPT_AWK_CMD \
         -v SHOW_UPSTREAM_NAME="$ZSH_GIT_PROMPT_SHOW_UPSTREAM_NAME" \
         -v SHOW_UPSTREAM_MISSING="$ZSH_GIT_PROMPT_SHOW_UPSTREAM_MISSING" \
@@ -139,7 +134,7 @@ function _zsh_git_prompt_git_status() {
                 }
             }
 
-            $2 == "stash.count" {
+            $2 == "stash" {
                 stashed = $3;
             }
 
