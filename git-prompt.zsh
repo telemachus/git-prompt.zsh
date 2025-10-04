@@ -206,6 +206,7 @@ function _zsh_git_prompt_git_status() {
 zmodload zsh/system
 
 function _zsh_git_prompt_async_request() {
+    emulate -L zsh
     typeset -g _ZSH_GIT_PROMPT_ASYNC_FD _ZSH_GIT_PROMPT_ASYNC_PID
 
     # If we've got a pending request, cancel it
