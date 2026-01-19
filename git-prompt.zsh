@@ -265,7 +265,7 @@ function _zsh_git_prompt_callback() {
 
     if [[ -z "$2" || "$2" == "hup" ]]; then
         # Read output from fd
-        fd_data="$(cat <&$1)"
+        fd_data="$(command cat <&$1)"
         output=( ${fd_data} )
         _ZSH_GIT_PROMPT_STATUS_OUTPUT="${output[1]}"
 
