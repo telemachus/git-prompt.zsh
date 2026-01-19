@@ -95,6 +95,11 @@ function _zsh_git_prompt_git_status() {
                 stashed = 0;
             }
 
+            function print_escaped(content) {
+                gsub("%", "%%", content);
+                print(content);
+            }
+
             $1 == "fatal:" {
                 fatal = 1;
             }
@@ -144,57 +149,55 @@ function _zsh_git_prompt_git_status() {
                 }
 
                 # Start of git information
-                print THEME_PREFIX;
+                print(THEME_PREFIX);
 
                 # Section one: branch_name
                 if (head == "(detached)") {
-                    print THEME_DETACHED;
+                    print(THEME_DETACHED);
                 } else {
-                    gsub("%", "%%", head);
-                    print head;
+                    print_escaped(head);
                 }
-                print THEME_SEPARATOR;
+                print(THEME_SEPARATOR);
 
                 # Section two: upstream
                 if (SHOW_UPSTREAM_NAME != "" && length(upstream) > 0) {
-                    gsub("%", "%%", upstream);
-                    print upstream;
-                    print THEME_SEPARATOR;
+                    print_escaped(upstream);
+                    print(THEME_SEPARATOR);
                 }
                 if (SHOW_UPSTREAM_MISSING != "" && length(upstream) == 0) {
-                    print THEME_UPSTREAM_MISSING;
-                    print THEME_SEPARATOR;
+                    print(THEME_UPSTREAM_MISSING);
+                    print(THEME_SEPARATOR);
                 }
 
                 # Section three: repository_state_and_tracking_status
                 if (staged > 0) {
-                    print THEME_STAGED;
+                    print(THEME_STAGED);
                 }
                 if (unstaged > 0) {
-                    print THEME_UNSTAGED;
+                    print(THEME_UNSTAGED);
                 }
                 if (untracked > 0) {
-                    print THEME_UNTRACKED;
+                    print(THEME_UNTRACKED);
                 }
                 if (stashed > 0) {
-                    print THEME_STASHED;
+                    print(THEME_STASHED);
                 }
                 if (behind < 0 && ahead > 0) {
-                    print THEME_DIVERGED;
+                    print(THEME_DIVERGED);
                 } else if (ahead > 0) {
-                    print THEME_AHEAD;
+                    print(THEME_AHEAD);
                 } else if (behind < 0) {
-                    print THEME_BEHIND;
+                    print(THEME_BEHIND);
                 } else {
-                    print THEME_UP_TO_DATE;
+                    print(THEME_UP_TO_DATE);
                 }
-                print THEME_SEPARATOR;
+                print(THEME_SEPARATOR);
 
                 # Section four: hash
-                print substr(oid, 0, 7);
+                print(substr(oid, 0, 7));
 
                 # End of git information
-                print THEME_SUFFIX;
+                print(THEME_SUFFIX);
             }
         '
 }
